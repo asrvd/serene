@@ -23,7 +23,7 @@ const HabitModal = ({
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="text-violet-11 shadow-blackA7 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
+        <button className="text-violet-11 shadow-blackA7 hover:bg-zinc-200 inline-flex h-[35px] items-center justify-center rounded-lg bg-zinc-100 px-4 py-2 font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
           Create Habit
         </button>
       </Dialog.Trigger>

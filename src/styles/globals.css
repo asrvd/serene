@@ -1,3 +1,10 @@
+@import url(https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,300,400&f[]=melodrama@300,400,600,700,500&display=swap);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-lg;
+}

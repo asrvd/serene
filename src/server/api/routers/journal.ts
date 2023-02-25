@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
@@ -36,7 +37,25 @@ export const journalRouter = createTRPCRouter({
       where: {
         userId: ctx.session.user.id,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     return journalEntries;
   }),
+
+  getJournalEntry: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      const journalEntry = await prisma.entry.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+      return journalEntry;
+    }),
 });

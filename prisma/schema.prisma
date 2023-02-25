@@ -73,19 +73,19 @@ model VerificationToken {
 }
 
 model Habit {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id        String      @id @default(cuid())
+    createdAt DateTime    @default(now())
+    updatedAt DateTime    @updatedAt
     frequency Int
     name      String
-    user      User     @relation(fields: [userId], references: [id])
+    user      User        @relation(fields: [userId], references: [id])
     userId    String
-    dates     Date[]
+    dates     HabitDate[]
 
     @@index([userId])
 }
 
-model Date {
+model HabitDate {
     id      String   @id @default(cuid())
     date    DateTime
     habit   Habit    @relation(fields: [habitId], references: [id])
@@ -99,7 +99,7 @@ model Entry {
     title     String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    text      String
+    text      String   @db.Text
     user      User     @relation(fields: [userId], references: [id])
     userId    String
 
