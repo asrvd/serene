@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
@@ -16,22 +17,22 @@ const JournalPage: NextPage = () => {
     <Layout>
       {session?.user && (
         <div className="max-h-auto my-14 flex min-h-screen w-[100%] animate-fade-in flex-col items-center justify-center gap-14 leading-none lg:my-0 lg:w-[95%]">
-          <div className="w-full flex justify-between items-center lg:px-16">
-            <h2 className="font-serif leading-none text-[4rem] font-bold tracking-tight text-zinc-50 lg:text-[6rem]">
+          <div className="flex w-full items-center justify-between lg:px-16">
+            <h2 className="font-serif text-[4rem] font-bold leading-none tracking-tight text-zinc-50 lg:text-[6rem]">
               Your Journal
             </h2>
             <button
-              className="rounded-lg max-w-max self-end text-zinc-800 bg-zinc-100 hover:bg-zinc-200 px-4 py-2 shadow-xl"
+              className="max-w-max self-end rounded-lg bg-zinc-100 px-4 py-2 text-zinc-800 shadow-xl hover:bg-zinc-200"
               onClick={() => router.push("/journal/create")}
             >
               Create New
             </button>
           </div>
-          <div className="grid h-full w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:px-16 gap-6">
+          <div className="grid h-full w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:px-16">
             {allEntries.data?.map((entry) => (
               <a
                 key={entry.id}
-                className="flex h-full w-full flex-col justify-between gap-6 rounded-lg bg-zinc-800/40 hover:bg-zinc-800/60 duration-200 p-4 text-left shadow-xl"
+                className="flex h-full w-full flex-col justify-between gap-6 rounded-lg bg-zinc-800/40 p-4 text-left shadow-xl duration-200 hover:bg-zinc-800/60"
                 href={`/journal/${entry.id}`}
               >
                 <h2 className="text-2xl font-black text-zinc-100">
@@ -45,6 +46,11 @@ const JournalPage: NextPage = () => {
                 </p>
               </a>
             ))}
+            {allEntries.data?.length === 0 && (
+              <p className="text-zinc-300">
+                You haven't created any entries yet!
+              </p>
+            )}
           </div>
         </div>
       )}

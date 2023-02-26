@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 
@@ -85,6 +86,11 @@ const HabitsPage: NextPage = () => {
                 </p>
               </div>
             ))}
+            {allHabits.data?.length === 0 && (
+              <p className="text-zinc-300">
+                You haven't created any entries yet!
+              </p>
+            )}
           </section>
         )}
       </div>
