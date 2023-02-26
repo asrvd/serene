@@ -58,4 +58,40 @@ export const journalRouter = createTRPCRouter({
       });
       return journalEntry;
     }),
+
+  deleteJournalEntry: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const journalEntry = await prisma.entry.delete({
+        where: {
+          id: input.id,
+        },
+      });
+      return journalEntry;
+    }),
+
+  editJournalEntry: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        text: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const journalEntry = await prisma.entry.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          title: input.title,
+          text: input.text,
+        },
+      });
+      return journalEntry;
+    }),
 });

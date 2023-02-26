@@ -5,6 +5,7 @@ import { api } from "@/utils/api";
 import type { NextPage } from "next";
 import Layout from "@/components/layout";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 const inputSchema = z.object({
   title: z.string().min(1).max(50),
@@ -40,11 +41,15 @@ const JournalCreatePage: NextPage = () => {
       return;
     }
 
+    const toastId = toast.loading("Creating entry...");
+
     try {
       createEntry.mutate(input.data);
+      toast.success("Entry created!", { id: toastId });
       router.push("/journal");
     } catch (error) {
       console.error(error);
+      toast.error("Failed to create entry.", { id: toastId });
     }
   };
 

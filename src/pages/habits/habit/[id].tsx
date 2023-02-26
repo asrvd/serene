@@ -4,6 +4,8 @@ import { api } from "@/utils/api";
 import type { NextPage } from "next";
 import Layout from "@/components/layout";
 import ToolTip from "@/components/ToolTip";
+import DeleteModal from "@/components/DeleteModal";
+import toast from "react-hot-toast";
 
 const HabitPage: NextPage = () => {
   const router = useRouter();
@@ -74,6 +76,31 @@ const HabitPage: NextPage = () => {
     0
   );
 
+  const deleteHabit = api.habit.deleteHabit.useMutation({
+    onMutate: () => {
+      ctx.habit.getHabits.invalidate();
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+    onSettled: () => {
+      router.push("/habits");
+    },
+  });
+
+  const handleHabitDelete = () => {
+    const toastId = toast.loading("Deleting Habit...");
+    try {
+      deleteHabit.mutate({
+        id: id as string,
+      });
+      toast.success("Habit Deleted!", { id: toastId });
+    } catch (error) {
+      console.error(error);
+      toast.error("Error Deleting Habit", { id: toastId });
+    }
+  };
+
   return (
     <Layout>
       <div className="my-14 flex h-full w-[95%] flex-col items-center justify-start lg:px-16">
@@ -131,19 +158,26 @@ const HabitPage: NextPage = () => {
                 );
               })}
             </div>
-            <button
-              className="mt-4 rounded-lg bg-zinc-800/60 px-4 py-2 text-zinc-300 hover:bg-zinc-800/80"
-              onClick={() => handleDateEnter(today)}
-              disabled={
-                dates?.find((d) => d.date.getDay() == today.getDay())
-                  ? true
-                  : false
-              }
-            >
-              {dates?.find((d) => d.date.getDay() == today.getDay())
-                ? "Already Marked"
-                : "Mark as Done"}
-            </button>
+            <div className="flex gap-4">
+              <button
+                className="mt-4 rounded-lg bg-zinc-800/60 px-4 py-2 text-zinc-300 hover:bg-zinc-800/80"
+                onClick={() => handleDateEnter(today)}
+                disabled={
+                  dates?.find((d) => d.date.getDay() == today.getDay())
+                    ? true
+                    : false
+                }
+              >
+                {dates?.find((d) => d.date.getDay() == today.getDay())
+                  ? "Already Marked"
+                  : "Mark as Done"}
+              </button>
+              <DeleteModal handleDelete={handleHabitDelete} type="Habit">
+                <button className="mt-4 rounded-lg bg-zinc-800/60 px-4 py-2 text-zinc-300 hover:bg-zinc-800/80">
+                  Delete Habit
+                </button>
+              </DeleteModal>
+            </div>
           </div>
         </div>
       </div>

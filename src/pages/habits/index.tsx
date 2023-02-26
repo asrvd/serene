@@ -8,6 +8,7 @@ import { api } from "@/utils/api";
 import HabitModal from "@/components/HabitModal";
 import Layout from "@/components/layout";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 const inputSchema = z.object({
   name: z.string().min(1).max(50),
@@ -42,11 +43,15 @@ const HabitsPage: NextPage = () => {
       return;
     }
 
+    const toastId = toast.loading("Creating habit...");
+
     try {
       habits.mutate(input.data);
+      toast.success("Habit created!", { id: toastId });
       // ctx.habit.getHabits.refetch();
     } catch (error) {
       console.error(error);
+      toast.error("Failed to create habit", { id: toastId });
     }
   };
 
@@ -64,7 +69,7 @@ const HabitsPage: NextPage = () => {
             {allHabits.data?.map((habit: Habit) => (
               <div
                 key={habit.id}
-                className="flex cursor-pointer h-full w-full flex-col justify-between gap-6 rounded-lg bg-zinc-800/40 hover:bg-zinc-800/60 duration-200 p-4 text-left shadow-xl"
+                className="flex h-full w-full cursor-pointer flex-col justify-between gap-6 rounded-lg bg-zinc-800/40 p-4 text-left shadow-xl duration-200 hover:bg-zinc-800/60"
                 // href={`/journal/habit/${habit.id}`}
                 onClick={() => router.push(`/habits/habit/${habit.id}`)}
               >

@@ -123,4 +123,27 @@ export const habitRouter = createTRPCRouter({
         });
       }
     }),
+
+  deleteHabit: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      try {
+        const habit = await prisma.habit.delete({
+          where: {
+            id: input.id,
+          },
+        });
+        return habit;
+      } catch (error) {
+        console.error(error);
+        throw new TRPCError({
+          message: "Could not delete habit",
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+    }),
 });
