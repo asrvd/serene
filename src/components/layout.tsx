@@ -62,7 +62,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" href="https://fmj.asrvd.me/🌸" />
       </Head>
       <div
-        className="min-w-screen flex h-screen flex-col items-center justify-center p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-lg"
+        className="min-w-screen flex min-h-screen flex-col items-center justify-center p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-lg"
         style={{
           backgroundColor: !session?.user ? "#99faff" : "#18181b",
           backgroundImage: !session?.user
@@ -70,7 +70,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             : undefined,
         }}
       >
-        <div className="relative flex h-full w-full min-w-full items-center justify-center font-sans">
+        <div className="relative flex h-full min-h-screen w-full min-w-full items-center justify-center font-sans">
           {session?.user && (
             <div className="fixed left-5 hidden w-[5%] flex-col items-center justify-evenly gap-10 rounded-lg bg-zinc-800/40 p-3 shadow-xl lg:flex">
               {navItems.map((item) => (
