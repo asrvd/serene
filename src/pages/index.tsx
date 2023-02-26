@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       {!session?.user && (
-        <div className="animate-fade-in text-center leading-none">
+        <div className="animate-fade-in text-center leading-none max-h-screen">
           <h2 className="font-serif text-[4rem] font-bold tracking-tight text-zinc-50 lg:text-[6rem]">
             Serene
           </h2>

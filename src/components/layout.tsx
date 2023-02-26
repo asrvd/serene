@@ -62,15 +62,15 @@ export default function Layout({ children }: { children: ReactNode }) {
         <link rel="icon" href="https://fmj.asrvd.me/🌸" />
       </Head>
       <div
-        className="min-w-screen flex min-h-screen flex-col items-center justify-center p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-lg"
+        className="min-w-screen flex h-screen flex-col items-center justify-center p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-800 scrollbar-thumb-rounded-lg"
         style={{
           backgroundColor: !session?.user ? "#99faff" : "#18181b",
           backgroundImage: !session?.user
             ? `radial-gradient(at 3% 42%, rgb(228, 105, 236) 0px, transparent 50%), radial-gradient(at 88% 60%, rgb(106, 220, 213) 0px, transparent 50%), radial-gradient(at 90% 0%, rgb(150, 171, 248) 0px, transparent 50%), radial-gradient(at 86% 90%, rgb(254, 114, 228) 0px, transparent 50%), radial-gradient(at 51% 93%, rgb(224, 144, 97) 0px, transparent 50%), radial-gradient(at 77% 35%, rgb(143, 239, 212) 0px, transparent 50%), radial-gradient(at 64% 29%, rgb(185, 246, 116) 0px, transparent 50%)`
-            : "",
+            : undefined,
         }}
       >
-        <div className="relative flex h-full min-h-screen w-full min-w-full items-center justify-center font-sans">
+        <div className="relative flex h-full w-full min-w-full items-center justify-center font-sans">
           {session?.user && (
             <div className="fixed left-5 hidden w-[5%] flex-col items-center justify-evenly gap-10 rounded-lg bg-zinc-800/40 p-3 shadow-xl lg:flex">
               {navItems.map((item) => (

@@ -15,7 +15,7 @@ const JournalPage: NextPage = () => {
   return (
     <Layout>
       {session?.user && (
-        <div className="max-h-auto my-14 flex min-h-full w-[100%] animate-fade-in flex-col items-center justify-start gap-14 leading-none lg:my-0 lg:w-[95%]">
+        <div className="max-h-auto my-14 flex min-h-screen w-[100%] animate-fade-in flex-col items-center justify-center gap-14 leading-none lg:my-0 lg:w-[95%]">
           <div className="w-full flex justify-between items-center lg:px-16">
             <h2 className="font-serif leading-none text-[4rem] font-bold tracking-tight text-zinc-50 lg:text-[6rem]">
               Your Journal
