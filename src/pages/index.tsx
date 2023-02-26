@@ -6,6 +6,8 @@ import { JournalIcon } from "@/components/icons/JournalIcon";
 import { VentIcon } from "@/components/icons/VentIcon";
 import { TrackerIcon } from "@/components/icons/TrackerIcon";
 import { useRouter } from "next/router";
+import { GithubIcon } from "@/components/icons/GitHubIcon";
+import { GoogleIcon } from "@/components/icons/GoogleIcon";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
@@ -14,19 +16,27 @@ const Home: NextPage = () => {
   return (
     <Layout>
       {!session?.user && (
-        <div className="animate-fade-in text-center leading-none h-full">
+        <div className="h-full animate-fade-in text-center leading-none flex flex-col justify-center items-center">
           <h2 className="font-serif text-[4rem] font-bold tracking-tight text-zinc-50 lg:text-[6rem]">
             Serene
           </h2>
           <p className="mt-1 text-xl text-zinc-100">
             Reflect, Track, and Let It Out: Your Mental Health Companion
           </p>
-          <button
-            className="mt-4 rounded-lg border border-transparent bg-zinc-100 px-4 py-3 text-zinc-900 duration-200 hover:border-zinc-100 hover:bg-transparent hover:text-zinc-100"
-            onClick={() => signIn("google")}
-          >
-            Get Started
-          </button>
+          <div className="flex gap-4 self-center">
+            <button
+              className="mt-4 flex items-center justify-center gap-2 rounded-lg border border-transparent bg-zinc-100 px-4 py-3 text-zinc-900 duration-200 hover:border-zinc-100 hover:bg-transparent hover:text-zinc-100"
+              onClick={() => signIn("google")}
+            >
+              <GoogleIcon /> Sign In
+            </button>
+            <button
+              className="mt-4 flex items-center justify-center gap-2 rounded-lg border border-transparent bg-zinc-100 px-4 py-3 text-zinc-900 duration-200 hover:border-zinc-100 hover:bg-transparent hover:text-zinc-100"
+              onClick={() => signIn("github")}
+            >
+              <GithubIcon /> Sign In
+            </button>
+          </div>
         </div>
       )}
       {session?.user && (
