@@ -3,7 +3,7 @@
 Reflect, Track, and Let It Out: Your Mental Health Companion
 
 *"One of the best projects I have ever seen in a hackathon .."*
-- Hackathon Judge
+~ Hackathon Judge
 </div>
 
 ## Features
